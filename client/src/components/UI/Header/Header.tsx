@@ -1,10 +1,11 @@
-import { Header as AntHeader } from "antd/es/layout/layout";
+import { Col, Row } from "antd";
 import Title from "antd/es/typography/Title";
+import styles from "./Header.module.css";
 
 export function Header() {
   return (
-    <AntHeader>
+    <header className={styles.header}>
       <Title>Game watch</Title>
-    </AntHeader>
+    </header>
   );
 }
