@@ -35,15 +35,19 @@ app.get("/game", async (req, res: Response<GameDetails>) => {
 
   if (typeof id !== "string") id = "";
 
-  const data = await FTGFetchGame({ id });
+  try {
+    const data = await FTGFetchGame({ id });
 
-  data.thumbnail = getProxyImageURL(data.thumbnail);
+    data.thumbnail = getProxyImageURL(data.thumbnail);
 
-  data.screenshots.forEach(
-    (screenshot) => (screenshot.image = getProxyImageURL(screenshot.image))
-  );
+    data.screenshots.forEach(
+      (screenshot) => (screenshot.image = getProxyImageURL(screenshot.image))
+    );
 
-  res.send(data);
+    res.send(data);
+  } catch (err) {
+    res.sendStatus(500);
+  }
 });
 
 app.listen(PORT, () => {
