@@ -43,6 +43,8 @@ div.paragraph {
 
 h2.title {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .content {
