@@ -14,23 +14,7 @@
   overflow: hidden;
 }
 
-h2.gameTitle {
-  margin-bottom: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.descriptionCard {
-  margin-top: 1rem;
-}
-
-@media screen and (min-width: 567px) {
-  .gameTitle {
-    margin-top: 0;
-  }
-
-  .descriptionCard {
-    margin-top: 0;
-    margin-left: 1rem;
-  }
+.skeletonImageWrapper {
+  width: 100% !important;
+  height: 100%;
 }

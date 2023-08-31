@@ -1,18 +1,41 @@
-import { Card, Carousel, Col, Row } from "antd";
+import { Card, Carousel, Col, Row, Skeleton } from "antd";
 import { useGetGameQuery } from "../../redux/services/FreeToGamesAPI";
 import Title from "antd/es/typography/Title";
 import Paragraph from "antd/es/typography/Paragraph";
 import styles from "./Game.module.css";
 import { SystemRequirements } from "../SystemRequirements/SystemRequirements";
-import { PictureOutlined } from "@ant-design/icons";
+import { LoadingOutlined, PictureOutlined } from "@ant-design/icons";
+import { GameInfoCard } from "../GameInfoCard/GameInfoCard";
+
+const bodyStyle = { display: "flex" };
 
 export function Game({ id }: { id: string }) {
   const { data, isLoading, error } = useGetGameQuery(id);
 
-  if (!data || isLoading) return <div>Loading</div>;
+  if (!data || isLoading)
+    return (
+      <Card bodyStyle={bodyStyle} style={{ flex: 1 }}>
+        <div className={styles.container}>
+          <Row>
+            <Col xs={24} sm={10} xl={7}>
+              <Skeleton.Image
+                rootClassName={styles.skeletonImageWrapper}
+                style={{ width: "100%", height: "100%", minHeight: "150px" }}
+              />
+            </Col>
+            <Col xs={24} sm={14} xl={17}>
+              <GameInfoCard />
+            </Col>
+          </Row>
+          <Row justify="center" style={{ padding: "1rem" }}>
+            <LoadingOutlined style={{ fontSize: "30px" }} />
+          </Row>
+        </div>
+      </Card>
+    );
 
   return (
-    <Card bodyStyle={{ display: "flex" }}>
+    <Card bodyStyle={bodyStyle} style={{ flex: 1 }}>
       <div className={styles.container}>
         <Row>
           <Col xs={24} sm={10} xl={7}>
@@ -23,33 +46,7 @@ export function Game({ id }: { id: string }) {
             />
           </Col>
           <Col xs={24} sm={14} xl={17}>
-            <Card
-              title={
-                <Title level={2} className={styles.gameTitle}>
-                  {data.title}
-                </Title>
-              }
-              bodyStyle={{ padding: "1rem" }}
-              className={styles.descriptionCard}
-            >
-              <Paragraph>
-                <b>Release date: </b>
-                {new Date(data.release_date).toLocaleDateString()}
-              </Paragraph>
-              <Paragraph>
-                <b>Publisher: </b>
-                {data.publisher}
-              </Paragraph>
-              <Paragraph>
-                <b>Developer: </b>
-                {data.developer}
-              </Paragraph>
-
-              <Paragraph style={{ margin: "0" }}>
-                <b>Genre: </b>
-                {data.genre}
-              </Paragraph>
-            </Card>
+            <GameInfoCard game={data} />
           </Col>
         </Row>
         {data.minimum_system_requirements && (

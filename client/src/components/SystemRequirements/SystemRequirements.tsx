@@ -1,4 +1,4 @@
-import { Card } from "antd";
+import { Card, Skeleton } from "antd";
 import { Requirements } from "../../../../types/requirements";
 import Paragraph from "antd/es/typography/Paragraph";
 import Title from "antd/es/typography/Title";
@@ -12,17 +12,26 @@ import {
 } from "@ant-design/icons";
 import { CSSProperties } from "react";
 
+const bodyStyle = { padding: "1rem" };
+
 export function SystemRequirements({
   requirements,
   style,
 }: {
-  requirements: Requirements;
+  requirements?: Requirements;
   style?: CSSProperties;
 }) {
+  if (!requirements)
+    return (
+      <Card bodyStyle={bodyStyle} style={style}>
+        <Skeleton active />
+      </Card>
+    );
+
   const { graphics, memory, os, processor, storage } = requirements;
 
   return (
-    <Card bodyStyle={{ padding: "1rem" }} style={style}>
+    <Card bodyStyle={bodyStyle} style={style}>
       <Title level={3}>
         <WarningOutlined /> Minimal system requirements
       </Title>
