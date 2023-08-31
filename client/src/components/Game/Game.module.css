@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.thumbnail {
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.carouselWrapper {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+h2.gameTitle {
+  margin-bottom: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.descriptionCard {
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 567px) {
+  .gameTitle {
+    margin-top: 0;
+  }
+
+  .descriptionCard {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+}

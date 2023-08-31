@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import express, { Response } from "express";
-import { FTGFetchGames } from "./utils/freeToGameFetch";
-import { Game } from "../../types/game";
+import { FTGFetchGame, FTGFetchGames } from "./utils/freeToGameFetch";
+import { Game, GameDetails } from "../../types/game";
 import cors from "cors";
 
 dotenv.config();
@@ -15,6 +15,16 @@ app.use(cors());
 
 app.get("/games", async (req, res: Response<Game[]>) => {
   const data = await FTGFetchGames(req.query);
+
+  res.send(data);
+});
+
+app.get("/game", async (req, res: Response<GameDetails>) => {
+  let id = req.query.id;
+
+  if (typeof id !== "string") id = "";
+
+  const data = await FTGFetchGame({ id });
 
   res.send(data);
 });

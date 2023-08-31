@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { GamesListPage } from "./pages/GamesListPage/GamesListPage";
-import { GamePage } from "./pages/GamePage";
+import { GamePage } from "./pages/GamePage/GamePage";
 
 export const router = createBrowserRouter([
   {

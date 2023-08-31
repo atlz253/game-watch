@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Game } from "../../../../types/game";
+import { Game, GameDetails } from "../../../../types/game";
 
 interface getGamesListOptions {
   category: string;
@@ -26,7 +26,10 @@ export const FTGAPI = createApi({
         return "games?" + searchParams;
       },
     }),
+    getGame: builder.query<GameDetails, string>({
+      query: (id) => `game?id=${id}`,
+    }),
   }),
 });
 
-export const { useGetGamesListQuery } = FTGAPI;
+export const { useGetGamesListQuery, useGetGameQuery } = FTGAPI;
