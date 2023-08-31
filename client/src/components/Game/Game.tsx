@@ -1,7 +1,6 @@
-import { Card, Carousel, Col, Row, Skeleton, Space } from "antd";
+import { Card, Carousel, Col, Row, Skeleton } from "antd";
 import { useGetGameQuery } from "../../redux/services/FreeToGamesAPI";
 import Title from "antd/es/typography/Title";
-import Paragraph from "antd/es/typography/Paragraph";
 import styles from "./Game.module.css";
 import { SystemRequirements } from "../SystemRequirements/SystemRequirements";
 import { LoadingOutlined, PictureOutlined } from "@ant-design/icons";

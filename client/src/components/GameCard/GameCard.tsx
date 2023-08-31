@@ -1,4 +1,4 @@
-import { Card, Col, Row, Skeleton, Space } from "antd";
+import { Card, Skeleton, Space } from "antd";
 import { Game } from "../../../../types/game";
 import { useNavigate } from "react-router-dom";
 import styles from "./GameCard.module.css";

@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { Dropdown } from "../UI/Dropdown/Dropdown";
 import genres from "./genres";
 import { selectGenre } from "../../redux/features/searchFilter/selector";
 import { MenuProps } from "antd";

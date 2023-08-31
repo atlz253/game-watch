@@ -1,5 +1,4 @@
 import styles from "./MainLayout.module.css";
-import { ReactNode } from "react";
 import { Header } from "../UI/Header/Header";
 import { Footer } from "../UI/Footer/Footer";
 import { Outlet } from "react-router-dom";
