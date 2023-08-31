@@ -1,4 +1,4 @@
-import { Space } from "antd";
+import { Card, Space } from "antd";
 import { useGetGamesListQuery } from "../../redux/services/FreeToGamesAPI";
 import { GameCard } from "../GameCard/GameCard";
 import styles from "./GamesList.module.css";
@@ -7,6 +7,7 @@ import {
   selectGenre,
   selectPlatform,
 } from "../../redux/features/searchFilter/selector";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export function GamesList() {
   const category = useSelector(selectGenre);
@@ -15,6 +16,15 @@ export function GamesList() {
     category,
     platform,
   });
+
+  if (isLoading)
+    return (
+      <Space className={styles.list} direction="vertical">
+        {Array.from(Array(10).keys()).map((i) => (
+          <GameCard key={i} />
+        ))}
+      </Space>
+    );
 
   return (
     <Space className={styles.list} direction="vertical">
