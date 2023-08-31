@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   genre: "all",
+  platform: "all",
 };
 
 const searchFilterSlice = createSlice({
@@ -10,6 +11,9 @@ const searchFilterSlice = createSlice({
   reducers: {
     setGenre: (state, { payload }: PayloadAction<string>) => {
       state.genre = payload;
+    },
+    setPlatform: (state, { payload }: PayloadAction<string>) => {
+      state.platform = payload;
     },
   },
 });
