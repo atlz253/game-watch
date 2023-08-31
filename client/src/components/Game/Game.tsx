@@ -1,4 +1,4 @@
-import { Card, Carousel, Col, Row, Skeleton } from "antd";
+import { Card, Carousel, Col, Row, Skeleton, Space } from "antd";
 import { useGetGameQuery } from "../../redux/services/FreeToGamesAPI";
 import Title from "antd/es/typography/Title";
 import Paragraph from "antd/es/typography/Paragraph";
@@ -6,13 +6,14 @@ import styles from "./Game.module.css";
 import { SystemRequirements } from "../SystemRequirements/SystemRequirements";
 import { LoadingOutlined, PictureOutlined } from "@ant-design/icons";
 import { GameInfoCard } from "../GameInfoCard/GameInfoCard";
+import { ErrorMessage } from "../UI/ErrorMessage/ErrorMessage";
 
 const bodyStyle = { display: "flex" };
 
 export function Game({ id }: { id: string }) {
   const { data, isLoading, error } = useGetGameQuery(id);
 
-  if (!data || isLoading)
+  if (isLoading)
     return (
       <Card bodyStyle={bodyStyle} style={{ flex: 1 }}>
         <div className={styles.container}>
@@ -33,6 +34,8 @@ export function Game({ id }: { id: string }) {
         </div>
       </Card>
     );
+
+  if (!data || error) return <ErrorMessage />;
 
   return (
     <Card bodyStyle={bodyStyle} style={{ flex: 1 }}>

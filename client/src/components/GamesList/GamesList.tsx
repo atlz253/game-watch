@@ -8,6 +8,7 @@ import {
   selectPlatform,
 } from "../../redux/features/searchFilter/selector";
 import { LoadingOutlined } from "@ant-design/icons";
+import { ErrorMessage } from "../UI/ErrorMessage/ErrorMessage";
 
 export function GamesList() {
   const category = useSelector(selectGenre);
@@ -26,9 +27,11 @@ export function GamesList() {
       </Space>
     );
 
+  if (!data || error) return <ErrorMessage />;
+
   return (
     <Space className={styles.list} direction="vertical">
-      {data?.map((item) => (
+      {data.map((item) => (
         <GameCard key={item.id} game={item} />
       ))}
     </Space>
