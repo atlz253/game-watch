@@ -31,7 +31,7 @@ export function GameCard({ game }: { game: Game }) {
         </Title>
         <Paragraph className={styles.paragraph}>
           <b>Release date: </b>
-          {release_date}
+          {new Date(release_date).toLocaleDateString()}
         </Paragraph>
         <Paragraph className={styles.paragraph}>
           <b>Publisher: </b>
