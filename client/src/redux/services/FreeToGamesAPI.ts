@@ -5,7 +5,23 @@ export const FTGAPI = createApi({
   reducerPath: "FTGAPI",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
   endpoints: (builder) => ({
-    getGamesList: builder.query<Game[], void>({ query: () => "games" }),
+    getGamesList: builder.query<Game[], { category: string; platform: string }>(
+      {
+        query: (options) => {
+          const searchParams = new URLSearchParams();
+
+          for (const key in options) {
+            const value = options[key];
+
+            if (value === "all") continue;
+
+            searchParams.set(key, value);
+          }
+
+          return "games?" + searchParams;
+        },
+      }
+    ),
   }),
 });
 

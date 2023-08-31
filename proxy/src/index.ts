@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/games", async (req, res: Response<Game[]>) => {
-  const data = await FTGFetchGames();
+  const data = await FTGFetchGames(req.query);
 
   res.send(data);
 });
