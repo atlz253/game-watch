@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 import { Game, GameDetails } from "../../../../types/game";
 
 interface getGamesListOptions {
@@ -6,9 +6,14 @@ interface getGamesListOptions {
   platform: string;
 }
 
+const staggeredBaseQuery = retry(
+  fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
+  { maxRetries: 3 }
+);
+
 export const FTGAPI = createApi({
   reducerPath: "FTGAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
+  baseQuery: staggeredBaseQuery,
   endpoints: (builder) => ({
     getGamesList: builder.query<Game[], getGamesListOptions>({
       query: (options) => {
