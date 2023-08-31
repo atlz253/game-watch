@@ -52,10 +52,12 @@ export function Game({ id }: { id: string }) {
             </Card>
           </Col>
         </Row>
-        <SystemRequirements
-          requirements={data.minimum_system_requirements}
-          style={{ marginTop: "1rem" }}
-        />
+        {data.minimum_system_requirements && (
+          <SystemRequirements
+            requirements={data.minimum_system_requirements}
+            style={{ marginTop: "1rem" }}
+          />
+        )}
         <Title level={3} style={{ textAlign: "center", marginTop: "0.5rem" }}>
           <PictureOutlined /> Screenshots
         </Title>

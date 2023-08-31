@@ -15,6 +15,6 @@ export interface Game {
 }
 
 export interface GameDetails extends Game {
-  minimum_system_requirements: Requirements;
+  minimum_system_requirements?: Requirements;
   screenshots: Array<{ id: string; image: string }>;
 }
