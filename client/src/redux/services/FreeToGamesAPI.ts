@@ -8,9 +8,16 @@ interface getGamesListOptions {
 
 const staggeredBaseQuery = retry(
   fetchBaseQuery({
-    baseUrl: "https://www.freetogame.com/api",
+    baseUrl: "https://free-to-play-games-database.p.rapidapi.com/api",
     prepareHeaders: (headers) => {
-      headers.set("Access-Control-Allow-Origin", "*");
+      headers.set(
+        "X-RapidAPI-Key",
+        "75c2c388demshda843ba397a0921p1571c7jsn65c844c41827"
+      );
+      headers.set(
+        "X-RapidAPI-Host",
+        "free-to-play-games-database.p.rapidapi.com"
+      );
       return headers;
     },
   }),
