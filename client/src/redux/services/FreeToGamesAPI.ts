@@ -7,7 +7,7 @@ interface getGamesListOptions {
 }
 
 const staggeredBaseQuery = retry(
-  fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
+  fetchBaseQuery({ baseUrl: "https://www.freetogame.com/api" }),
   { maxRetries: 3 }
 );
 
