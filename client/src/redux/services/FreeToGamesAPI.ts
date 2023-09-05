@@ -7,7 +7,13 @@ interface getGamesListOptions {
 }
 
 const staggeredBaseQuery = retry(
-  fetchBaseQuery({ baseUrl: "https://www.freetogame.com/api" }),
+  fetchBaseQuery({
+    baseUrl: "https://www.freetogame.com/api",
+    prepareHeaders: (headers) => {
+      headers.set("Access-Control-Allow-Origin", "*");
+      return headers;
+    },
+  }),
   { maxRetries: 3 }
 );
 
